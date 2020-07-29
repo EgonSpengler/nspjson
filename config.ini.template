@@ -1,0 +1,14 @@
+[SETTINGS]
+motd = Connected to Server!
+# Where the files are accessible from your webserver
+webroot = servername.local/Path
+protocol = http://
+# Directory containing the files on disk 
+# (locally browseable directory, likely different from WEBROOT)
+nspdir = /path/of_the/nsp_files/
+# Send switch.json to wherever you would like to serve it from
+output = /path/to/save/json/
+# Enable for HTTP Basic Auth in generated links
+use_auth = off
+auth_user = username
+auth_pass = changeme

@@ -9,6 +9,7 @@ import os
 import ntpath
 import urllib.parse
 import base64
+from configparser import ConfigParser
 
 
 def listfiles(dir):
@@ -16,23 +17,27 @@ def listfiles(dir):
         for file in folders + files:
             yield os.path.join(root, file)
 
+#Read settings from config.ini
+config_object = ConfigParser()
+config_object.read("config.ini")
+settings = config_object["SETTINGS"]
 
 # Where the files are accessible from your webserver
-WEBROOT = "192.168.1.115/Media/Games/Consoles/Switch/NSP/"
-PROTOCOL = "http://"
+WEBROOT = settings.get("webroot")
+PROTOCOL = settings.get("protocol", "http://")
 # Directory containing the files on disk
 # (locally browseable directory, likely different from WEBROOT)
-NSPDIR = "/base/Media/Games/Consoles/Switch/NSP/"
+NSPDIR = settings.get("nspdir", ".")
 # Send switch.json to wherever you would like to serve it from
 # (since "Media" is my browseable http directory, I will enter
 #  192.168.1.115://Media/Switch/switch.json as my Tinfoil source)
-OUTPUT_JSON = "/base/Media/Switch/switch.json"
-MOTD = "Connected to Egon's Server!"
+OUTPUT_JSON = os.path.join(settings.get("output", '.'), "switch.json")
+MOTD = settings.get("motd")
 
 # Enable for HTTP Basic Auth in generated links
-USE_AUTH = True
-AUTH_USER = "guest"
-AUTH_PASS = "iamuptonogood"
+USE_AUTH = settings.getboolean("use_auth", fallback=False)
+AUTH_USER = settings.get("auth_user")
+AUTH_PASS = settings.get("auth_pass")
 
 files = []
 results = {}
