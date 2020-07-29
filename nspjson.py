@@ -42,7 +42,7 @@ auth_str = (PROTOCOL + AUTH_USER + ":" + AUTH_PASS + "@") if USE_AUTH else PROTO
 for filename in sorted(listfiles(NSPDIR)):
     if filename.lower().endswith(".nsp") or filename.lower().endswith(".nsz"):
         file = {}
-        file["url"] = (urllib.parse.quote(auth_str + WEBROOT + ntpath.basename(filename), safe="/:@"))
+        file["url"] = (urllib.parse.quote(auth_str + WEBROOT + os.path.relpath(filename, NSPDIR), safe="/:@"))
         file["size"] = os.path.getsize(filename)
         print(" + added " + ntpath.basename(filename))
         files.append(file)
