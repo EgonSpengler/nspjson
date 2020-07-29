@@ -1,4 +1,4 @@
-#!/bin/python3
+#!/usr/bin/env python3
 
 # Tinfoil-compatible json generator for serving NSP/NSZ
 #
