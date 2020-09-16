@@ -5,8 +5,9 @@ Got NSP backups and tired of re-installing them one by one?  Now you can browse 
 
 ***
 
-Your files will need to be browseable on an HTTP server (a very quick Apache setup can accomplish this, numerous guides are available for any platform).
+Your files will need to be browseable on an HTTP server (a very quick Apache setup can accomplish this, numerous guides are available for any platform).  
+Supports basic HTTP user/pass authentication, though I gave up on getting special characters in passwords to work.  (pull requests welcome)
 
-Supports basic user/pass authentication, though I gave up on getting special characters in passwords to work.  (pull requests welcome)
+Simply fill `config.ini.template` with your own settings and save it as `config.ini`
 
 ![Switch Screenshot](https://i.imgur.com/WHiysyB.jpg)
